@@ -12,7 +12,7 @@ services:
       - ${CLIENT_GATEWAY_PORT}:3000
     volumes:
       - ./client-gateway/src:/usr/src/app/src
-    command: npm run start:dev
+    command: pnpm run start:dev
     environment:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222
