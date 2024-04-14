@@ -29,6 +29,8 @@ services:
 
   orders-ms:
     build: ./orders-ms
+    depends_on:
+      - orders-db
     volumes:
       - ./orders-ms/src:/usr/src/app/src
     command: pnpm run start:dev
