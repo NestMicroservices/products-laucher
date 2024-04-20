@@ -17,6 +17,15 @@ services:
       - PORT=3000
       - NATS_SERVERS=${NATS_SERVERS}
 
+  auth-ms:
+    build: ./auth-ms
+    volumes:
+      - ./auth-ms/src:/usr/src/app/src
+    command: pnpm run start:dev
+    environment:
+      - PORT=3004
+      - NATS_SERVERS=${NATS_SERVERS}
+      
   product-ms:
     build: ./products-ms
     volumes:
