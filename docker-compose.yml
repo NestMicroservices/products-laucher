@@ -19,8 +19,6 @@ services:
 
   auth-ms:
     build: ./auth-ms
-    depends_on:
-      - auth-db
     volumes:
       - ./auth-ms/src:/usr/src/app/src
     command: pnpm run start:dev
@@ -28,18 +26,6 @@ services:
       - PORT=3004
       - NATS_SERVERS=${NATS_SERVERS}
       - DATABASE_URL=${AUTH_DATABASE_URL}
-
-  auth-db:
-    container_name: auth_database
-    image: 'mongo:7.0'
-    restart: always
-    volumes:
-      - ./auth-ms/mongo:/data/db
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123456
       
   product-ms:
     build: ./products-ms
